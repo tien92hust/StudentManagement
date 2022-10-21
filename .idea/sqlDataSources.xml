@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="b6fb38ad-f46a-4bfd-9575-4ffa11b379e4" name="postgres@localhost Mapping">
+      <data-sources db="61526209-2ce3-4f03-beaa-69feaa9a5b71" />
+      <scope>
+        <node kind="database" negative="1">
+          <node kind="schema" negative="1" />
+        </node>
+      </scope>
+    </mapping>
+    <mapping uuid="42975b5d-9c14-4e87-bc5f-bb0854cc2469" name="postgres@localhost Mapping [2]">
+      <data-sources db="19020075-e09c-4f3e-a780-973e08c55b3b" />
+      <scope>
+        <node kind="database" negative="1">
+          <node kind="schema" negative="1" />
+        </node>
+      </scope>
+    </mapping>
+    <mapping uuid="8612cdb5-ab34-40fb-babc-db590767b220" name="postgres@localhost Mapping [3]">
+      <data-sources db="ccb0b62d-ee70-460c-a022-95611c5811a1" />
+      <scope>
+        <node kind="database" negative="1">
+          <node kind="schema" negative="1" />
+        </node>
+      </scope>
+    </mapping>
+    <mapping uuid="f8cd4941-92e4-45db-86e8-2065909249de" name="StudentManager BD on local PostgreSQL Mapping">
+      <data-sources db="7f4d40cf-a7a7-4450-8240-d08c37cea0c3" />
+      <scope>
+        <node kind="database" negative="1">
+          <node kind="schema" negative="1" />
+        </node>
+      </scope>
+    </mapping>
+    <mapping uuid="38f06312-55bf-4b8d-ab81-1c1c843efd59" name="postgres@localhost Mapping [4]">
+      <data-sources db="d37092ad-7402-468a-9d6f-58b92569e062" />
+      <scope>
+        <node kind="database" negative="1">
+          <node kind="schema" negative="1" />
+        </node>
+      </scope>
+    </mapping>
+    <mapping uuid="e2e77294-28a9-435d-9709-b5f17aef36dd" name="postgres@localhost Mapping [5]">
+      <data-sources db="bcda4496-c4e4-472a-a723-da6feaba8608" />
+      <scope>
+        <node negative="1">
+          <node kind="database" qname="@">
+            <node kind="schema" qname="@" />
+          </node>
+          <node kind="database">
+            <name qname="postgres" />
+            <name qname="StudentManager" />
+            <name qname="template0" />
+            <name qname="template1" />
+          </node>
+        </node>
+      </scope>
+    </mapping>
+  </component>
+</project>
