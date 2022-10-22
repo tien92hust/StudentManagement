@@ -9,7 +9,6 @@ public class Test {
         try {
             new LoginView();
 //            new StudentManagementView();
-//            new ConnJDBC();
         } catch (Exception e) {
             e.printStackTrace();
         }
