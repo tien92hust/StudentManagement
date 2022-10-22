@@ -91,17 +91,6 @@ public class StudentManagementView extends JFrame {
         gbcSM.gridy = 3;
         panelSM.add(genderLabel, gbcSM);
 
-        String gender[] = {"","Male","Female"};
-        genderCBB = new JComboBox<>(gender);
-        genderCBB.setFont(textFieldFont);
-//        genderCBB.
-        genderCBB.setPreferredSize(new Dimension(150,40));
-        gbcSM.fill = GridBagConstraints.HORIZONTAL;
-        gbcSM.gridx = 1;
-        gbcSM.gridwidth = 1;
-        gbcSM.gridy = 3;
-        gbcSM.insets = new Insets(0,0,0,50);
-        panelSM.add(genderCBB, gbcSM);
 
 //        --------input major----------
         JLabel majorLabel = new JLabel("Major");
@@ -163,6 +152,21 @@ public class StudentManagementView extends JFrame {
         gbcSM.gridy = 6;
         panelSM.add(passwordTextField, gbcSM);
 
+        //        ------CBB gender-------
+        String gender[] = {"","Male","Female"};
+        genderCBB = new JComboBox<>(gender);
+        genderCBB.setFont(textFieldFont);
+//        genderCBB.
+        genderCBB.setPreferredSize(new Dimension(120,40));
+//       gbcSM.fill = GridBagConstraints.HORIZONTAL;
+        gbcSM.gridx = 1;
+//        gbcSM.gridwidth = 1;
+        gbcSM.gridy = 3;
+        gbcSM.anchor = GridBagConstraints.LINE_START;
+//        gbcSM.insets = new Insets(0,0,15,80);
+//        gbcSM.gridheight = 1;
+        panelSM.add(genderCBB, gbcSM);
+
 
 //      ------top----------
         JLabel userLoginLabel = new JLabel("Student Management");
@@ -200,6 +204,7 @@ public class StudentManagementView extends JFrame {
         refreshButton.addActionListener(action);
         refreshButton.setPreferredSize(new Dimension(100,50));
         refreshButton.setFont(inputFont);
+
 
 //        ------------Button-------------
         JPanel buttonPanel = new JPanel();
