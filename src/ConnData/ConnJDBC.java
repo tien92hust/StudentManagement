@@ -11,7 +11,6 @@ public class ConnJDBC {
     static String user = "postgres";
     static String password = "lhyieltgjtgy1";
     public static Connection getConnection(){
-        System.out.println("Test cnn");
         Connection  connection = null;
         try {
             connection = DriverManager.getConnection(url, user, password);
@@ -29,12 +28,12 @@ public class ConnJDBC {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()){
                 Student st = new Student(rs.getInt("id"),
-                                        rs.getString("password"),
                                         rs.getString("name"),
                                         rs.getInt("age"),
                                         rs.getInt("gender"),
                                         rs.getString("major"),
-                                        rs.getFloat("score"));
+                                        rs.getFloat("score"),
+                                        rs.getString("password"));
                 studentList.add(st);
             }
         } catch (Exception e) {
@@ -44,16 +43,16 @@ public class ConnJDBC {
     }
 
     public static void insert(Student st){
-        String query = "insert into student (password, name, age, gender, major, score) values (?, ?, ?, ?, ?, ?)";
+        String query = "insert into student (name, age, gender, major, score, password) values (?, ?, ?, ?, ?, ?)";
         try {
             Connection connection = getConnection();
             PreparedStatement pstmt = connection.prepareStatement(query);
-            pstmt.setString(1, st.getPassword());
-            pstmt.setString(2, st.getName());
-            pstmt.setInt(3, st.getAge());
-            pstmt.setInt(4, st.getGender());
-            pstmt.setString(5, st.getMajor());
-            pstmt.setFloat(6, st.getScore());
+            pstmt.setString(1, st.getName());
+            pstmt.setInt(2, st.getAge());
+            pstmt.setInt(3, st.getGender());
+            pstmt.setString(4, st.getMajor());
+            pstmt.setFloat(5, st.getScore());
+            pstmt.setString(6, st.getPassword());
             pstmt.execute();
         } catch (Exception e) {
 
@@ -72,16 +71,16 @@ public class ConnJDBC {
     }
 
     public static void Update(Student st){
-        String query = "Update student set password=?, name=?, age=?, gender=?, major=?, score=? where name='"+st.getName()+"'";
+        String query = "Update student set name=?, age=?, gender=?, major=?, score=?, password=? where name='"+st.getName()+"'";
         try {
             Connection connection = getConnection();
             PreparedStatement pstmt = connection.prepareStatement(query);
-            pstmt.setString(1, st.getPassword());
-            pstmt.setString(2, st.getName());
-            pstmt.setInt(3, st.getAge());
-            pstmt.setInt(4, st.getGender());
-            pstmt.setString(5, st.getMajor());
-            pstmt.setFloat(6, st.getScore());
+            pstmt.setString(1, st.getName());
+            pstmt.setInt(2, st.getAge());
+            pstmt.setInt(3, st.getGender());
+            pstmt.setString(4, st.getMajor());
+            pstmt.setFloat(5, st.getScore());
+            pstmt.setString(6, st.getPassword());
             pstmt.executeUpdate();
         } catch (Exception e) {
 
@@ -89,25 +88,25 @@ public class ConnJDBC {
     }
 
     public static List<Student>findByName(Student s){
-        List<Student> studentL = new ArrayList<>();
-        String query = "select from student where name ='"+s.getName()+"' ";
+        List<Student> studentl = new ArrayList<>();
+        String query = "select*from student where student.name ='"+s.getName()+"'";
         try {
             Connection connection = getConnection();
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()){
                 Student st = new Student(rs.getInt("id"),
-                        rs.getString("password"),
                         rs.getString("name"),
                         rs.getInt("age"),
                         rs.getInt("gender"),
                         rs.getString("major"),
-                        rs.getFloat("score"));
-                studentL.add(st);
+                        rs.getFloat("score"),
+                        rs.getString("password"));
+                studentl.add(st);
             }
         } catch (Exception e) {
 
         }
-        return studentL;
+        return studentl;
     }
 }

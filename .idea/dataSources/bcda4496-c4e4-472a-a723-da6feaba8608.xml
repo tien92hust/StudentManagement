@@ -3,15 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.43">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <Grants>1||-9223372036854775808|c|G
-1||10|c|G
-1||10|C|G
-1||10|T|G
-14019||-9223372036854775808|c|G
-14019||10|c|G
-14019||10|C|G
-14019||10|T|G</Grants>
-      <IntrospectionStateNumber>770</IntrospectionStateNumber>
+      <IntrospectionStateNumber>779</IntrospectionStateNumber>
       <ServerVersion>14.5</ServerVersion>
       <StartupTime>1665924783</StartupTime>
       <TimeZones>true ACDT
@@ -809,7 +801,7 @@ false Zulu
 13654||10|C|G
 13654||-9223372036854775808|U|G
 13654||10|U|G</Grants>
-      <IntrospectionStateNumber>770</IntrospectionStateNumber>
+      <IntrospectionStateNumber>779</IntrospectionStateNumber>
       <ObjectId>14020</ObjectId>
       <Relations>sequence|table|16405|16402|1
 </Relations>
@@ -4244,7 +4236,7 @@ false Zulu
     <schema id="263" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>770</IntrospectionStateNumber>
+      <IntrospectionStateNumber>779</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>527</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -4258,7 +4250,7 @@ false Zulu
     </sequence>
     <table id="265" parent="263" name="student">
       <ObjectId>16402</ObjectId>
-      <StateNumber>743</StateNumber>
+      <StateNumber>778</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
@@ -4270,47 +4262,47 @@ false Zulu
       <StateNumber>742</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="267" parent="265" name="password">
-      <DataType>varchar|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-      <StateNumber>743</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="268" parent="265" name="name">
+    <column id="267" parent="265" name="name">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>743</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="269" parent="265" name="age">
+    <column id="268" parent="265" name="age">
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>740</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="270" parent="265" name="gender">
+    <column id="269" parent="265" name="gender">
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>740</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="271" parent="265" name="major">
+    <column id="270" parent="265" name="major">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StateNumber>743</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="272" parent="265" name="score">
+    <column id="271" parent="265" name="score">
       <DataType>double precision|0s</DataType>
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StateNumber>741</StateNumber>
       <TypeId>701</TypeId>
+    </column>
+    <column id="272" parent="265" name="password">
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+      <StateNumber>778</StateNumber>
+      <TypeId>1043</TypeId>
     </column>
     <index id="273" parent="265" name="student_pkey">
       <ColNames>id</ColNames>

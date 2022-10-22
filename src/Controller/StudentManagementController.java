@@ -1,6 +1,7 @@
 package Controller;
 
 import ConnData.ConnJDBC;
+import Model.Student;
 import View.StudentManagementView;
 
 import javax.swing.*;
@@ -16,11 +17,19 @@ public class StudentManagementController implements Action {
     @Override
     public void actionPerformed(ActionEvent e) {
         String cm = e.getActionCommand();
-        JOptionPane.showMessageDialog(view, "Just click: "+cm);
-        if(e.equals("Refresh")){
+//        JOptionPane.showMessageDialog(view, "Just click: "+cm);
+        if(cm.equals("Refresh")){
             this.view.refresh();
+        } else if (cm.equals("Save")) {
+            this.view.saveStudent();
+        } else if (cm.equals("Delete")) {
+            this.view.deleteStudent();
+        } else if (cm.equals("Find")) {
+            this.view.searchStudent();
+        } else if (cm.equals("Update")) {
+            this.view.updateStudent();
         }
-        }
+    }
 
     @Override
     public Object getValue(String key) {

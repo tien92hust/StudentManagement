@@ -8,6 +8,7 @@ import Model.StudentManagementModel;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.text.Highlighter;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,14 +58,14 @@ public class StudentManagementView extends JFrame {
         nameLabel.setFont(inputFont);
         nameLabel.setPreferredSize(new Dimension(90,40));
         gbcSM.gridx = 0;
-        gbcSM.gridy = 3;
+        gbcSM.gridy = 1;
         panelSM.add(nameLabel, gbcSM);
 
         nameTextField = new JTextField();
         nameTextField.setFont(textFieldFont);
         nameTextField.setPreferredSize(new Dimension(200,40));
         gbcSM.gridx = 1;
-        gbcSM.gridy = 3;
+        gbcSM.gridy = 1;
         panelSM.add(nameTextField, gbcSM);
 
 //        --------input age----------
@@ -72,14 +73,14 @@ public class StudentManagementView extends JFrame {
         ageLabel.setFont(inputFont);
         ageLabel.setPreferredSize(new Dimension(90,40));
         gbcSM.gridx = 0;
-        gbcSM.gridy = 4;
+        gbcSM.gridy = 2;
         panelSM.add(ageLabel, gbcSM);
 
         ageTextField = new JTextField();
         ageTextField.setFont(textFieldFont);
         ageTextField.setPreferredSize(new Dimension(200,40));
         gbcSM.gridx = 1;
-        gbcSM.gridy = 4;
+        gbcSM.gridy = 2;
         panelSM.add(ageTextField, gbcSM);
 
 //        --------input gender----------
@@ -87,15 +88,19 @@ public class StudentManagementView extends JFrame {
         genderLabel.setFont(inputFont);
         genderLabel.setPreferredSize(new Dimension(90,40));
         gbcSM.gridx = 0;
-        gbcSM.gridy = 5;
+        gbcSM.gridy = 3;
         panelSM.add(genderLabel, gbcSM);
 
         String gender[] = {"","Male","Female"};
         genderCBB = new JComboBox<>(gender);
         genderCBB.setFont(textFieldFont);
+//        genderCBB.
         genderCBB.setPreferredSize(new Dimension(150,40));
+        gbcSM.fill = GridBagConstraints.HORIZONTAL;
         gbcSM.gridx = 1;
-        gbcSM.gridy = 5;
+        gbcSM.gridwidth = 1;
+        gbcSM.gridy = 3;
+        gbcSM.insets = new Insets(0,0,0,50);
         panelSM.add(genderCBB, gbcSM);
 
 //        --------input major----------
@@ -103,14 +108,14 @@ public class StudentManagementView extends JFrame {
         majorLabel.setFont(inputFont);
         majorLabel.setPreferredSize(new Dimension(90,40));
         gbcSM.gridx = 0;
-        gbcSM.gridy = 6;
+        gbcSM.gridy = 4;
         panelSM.add(majorLabel, gbcSM);
 
         majorTextField = new JTextField();
         majorTextField.setFont(textFieldFont);
         majorTextField.setPreferredSize(new Dimension(200,40));
         gbcSM.gridx = 1;
-        gbcSM.gridy = 6;
+        gbcSM.gridy = 4;
         panelSM.add(majorTextField, gbcSM);
 
 //        --------input score----------
@@ -118,44 +123,44 @@ public class StudentManagementView extends JFrame {
         scoreLabel.setFont(inputFont);
         scoreLabel.setPreferredSize(new Dimension(90,40));
         gbcSM.gridx = 0;
-        gbcSM.gridy = 7;
+        gbcSM.gridy = 5;
         panelSM.add(scoreLabel, gbcSM);
 
         scoreTextField = new JTextField();
         scoreTextField.setFont(textFieldFont);
         scoreTextField.setPreferredSize(new Dimension(200,40));
         gbcSM.gridx = 1;
-        gbcSM.gridy = 7;
+        gbcSM.gridy = 5;
         panelSM.add(scoreTextField, gbcSM);
 
 //      --------input ID----------
-        JLabel idLabel = new JLabel("Student ID");
-        idLabel.setFont(inputFont);
-        idLabel.setPreferredSize(new Dimension(90,40));
-        gbcSM.gridx = 0;
-        gbcSM.gridy = 1;
-        panelSM.add(idLabel, gbcSM);
-
-        JTextField idTextField = new JTextField();
-        idTextField.setFont(textFieldFont);
-        idTextField.setPreferredSize(new Dimension(200,40));
-        gbcSM.gridx = 1;
-        gbcSM.gridy = 1;
-        panelSM.add(idTextField, gbcSM);
+//        JLabel idLabel = new JLabel("Student ID");
+//        idLabel.setFont(inputFont);
+//        idLabel.setPreferredSize(new Dimension(90,40));
+//        gbcSM.gridx = 0;
+//        gbcSM.gridy = 1;
+//        panelSM.add(idLabel, gbcSM);
+//
+//        JTextField idTextField = new JTextField();
+//        idTextField.setFont(textFieldFont);
+//        idTextField.setPreferredSize(new Dimension(200,40));
+//        gbcSM.gridx = 1;
+//        gbcSM.gridy = 1;
+//        panelSM.add(idTextField, gbcSM);
 
 //        --------input password----------
         JLabel passwordLabel = new JLabel("Password");
         passwordLabel.setFont(inputFont);
         passwordLabel.setPreferredSize(new Dimension(90,40));
         gbcSM.gridx = 0;
-        gbcSM.gridy = 2;
+        gbcSM.gridy = 6;
         panelSM.add(passwordLabel, gbcSM);
 
         passwordTextField = new JTextField();
         passwordTextField.setFont(textFieldFont);
         passwordTextField.setPreferredSize(new Dimension(200,40));
         gbcSM.gridx = 1;
-        gbcSM.gridy = 2;
+        gbcSM.gridy = 6;
         panelSM.add(passwordTextField, gbcSM);
 
 
@@ -223,11 +228,24 @@ public class StudentManagementView extends JFrame {
                         {null, null, null, null, null, null, null},
                         {null, null, null, null, null, null, null}
                 },
-                new String[] {"Student ID","Password","Name","Age","Gender","Major","Score"}
+                new String[] {"Student ID", "Name","Age","Gender","Major","Score","Password"}
         ));
 //        stTable.setModel(studentTable);
+        stTable.setFont(new Font("Arial",Font.PLAIN,13));
+        stTable.getColumnModel().getColumn(0).setPreferredWidth(70);
+        stTable.getColumnModel().getColumn(0).setMinWidth(70);
         stTable.getColumnModel().getColumn(1).setPreferredWidth(120);
         stTable.getColumnModel().getColumn(1).setMinWidth(120);
+        stTable.getColumnModel().getColumn(2).setPreferredWidth(40);
+        stTable.getColumnModel().getColumn(2).setMinWidth(40);
+        stTable.getColumnModel().getColumn(3).setPreferredWidth(50);
+        stTable.getColumnModel().getColumn(3).setMinWidth(50);
+        stTable.getColumnModel().getColumn(4).setPreferredWidth(70);
+        stTable.getColumnModel().getColumn(4).setMinWidth(70);
+        stTable.getColumnModel().getColumn(5).setPreferredWidth(40);
+        stTable.getColumnModel().getColumn(5).setMinWidth(40);
+        stTable.getColumnModel().getColumn(6).setPreferredWidth(80);
+        stTable.getColumnModel().getColumn(6).setMinWidth(80);
 
         scrollPane = new JScrollPane();
         scrollPane.setPreferredSize(new Dimension(500,20));
@@ -261,8 +279,8 @@ public class StudentManagementView extends JFrame {
             if(student.getGender()  == 0) gender = "Male";
             else {gender = "Female";}
             tableModel.addRow(new Object[]{
-                    student.getId(), student.getPassword(), student.getName(),
-                    student.getAge(), gender, student.getMajor(), student.getScore()
+                    student.getId(), student.getName(), student.getAge(),
+                    gender, student.getMajor(), student.getScore(),  student.getPassword()
             });
         });
     }
@@ -274,5 +292,46 @@ public class StudentManagementView extends JFrame {
         genderCBB.setSelectedIndex(-1);
         majorTextField.setText("");
         scoreTextField.setText("");
+        showData(ConnJDBC.findAll());
+    }
+
+    public void saveStudent() {
+        Student st = new Student();
+        st.setName(nameTextField.getText());
+        st.setAge(Integer.parseInt(ageTextField.getText()));
+        st.setGender(genderCBB.getSelectedIndex());
+        st.setMajor(majorTextField.getText());
+        st.setScore(Float.parseFloat(scoreTextField.getText()));
+        st.setPassword(passwordTextField.getText());
+        ConnJDBC.insert(st);
+        JOptionPane.showMessageDialog(null, "Save success! ");
+        showData(ConnJDBC.findAll());
+    }
+
+
+    public void deleteStudent() {
+        Student st = new Student();
+        st.setName(nameTextField.getText());
+        ConnJDBC.delete(st);
+        showData(ConnJDBC.findAll());
+    }
+
+    public void searchStudent() {
+        Student st = new Student();
+        st.setName(nameTextField.getText());
+        showData(ConnJDBC.findByName(st));
+    }
+
+    public void updateStudent() {
+        Student st = new Student();
+        st.setName(nameTextField.getText());
+        st.setAge(Integer.parseInt(ageTextField.getText()));
+        st.setGender(genderCBB.getSelectedIndex());
+        st.setMajor(majorTextField.getText());
+        st.setScore(Float.parseFloat(scoreTextField.getText()));
+        st.setPassword(passwordTextField.getText());
+        ConnJDBC.Update(st);
+        JOptionPane.showMessageDialog(null, "Save success! ");
+        showData(ConnJDBC.findAll());
     }
 }

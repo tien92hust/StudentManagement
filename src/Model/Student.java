@@ -2,23 +2,23 @@ package Model;
 
 public class Student {
     private int id;
-    private String password;
     private String name;
     private int age, gender;
     private String major;
     private float score;
+    private String password;
 
     public Student() {
     }
 
-    public Student(int id, String password, String name, int age, int gender, String major, float score) {
+    public Student(int id, String name, int age, int gender, String major, float score, String password) {
         this.id = id;
-        this.password = password;
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.major = major;
         this.score = score;
+        this.password = password;
     }
 
     public int getId() {
@@ -27,14 +27,6 @@ public class Student {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getName() {
@@ -75,5 +67,12 @@ public class Student {
 
     public void setScore(float score) {
         this.score = score;
+    }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
