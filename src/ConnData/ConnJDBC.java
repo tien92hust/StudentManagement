@@ -1,5 +1,6 @@
 package ConnData;
 
+import Model.Account;
 import Model.Student;
 
 import java.sql.*;
@@ -109,4 +110,17 @@ public class ConnJDBC {
         }
         return studentl;
     }
+
+//    public static void getAccount(Account ac){
+//        String queryUser = "select*from account where User=? and Password=?";
+//        try {
+//            Connection connection = getConnection();
+//            PreparedStatement pstmt = connection.prepareCall(queryUser);
+//            String us = String.valueOf(ac.getUser());
+//            pstmt.setString(1,us);
+//            pstmt.setString(2,ac.getPassword()) ;
+//            ResultSet rs = pstmt.executeQuery();
+//        } catch (Exception e) {
+//        }
+//    }
 }
