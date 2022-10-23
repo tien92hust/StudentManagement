@@ -6,6 +6,8 @@ import Model.Student;
 import Model.StudentManagementModel;
 
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.text.Highlighter;
@@ -22,7 +24,6 @@ public class StudentManagementView extends JFrame {
     private JComboBox<String> genderCBB;
     private JTextField majorTextField;
     private JTextField scoreTextField;
-    private JTextField passwordTextField;
     private JButton saveButton;
     private JButton deleteButton;
     private JButton findButton;
@@ -137,21 +138,6 @@ public class StudentManagementView extends JFrame {
 //        gbcSM.gridy = 1;
 //        panelSM.add(idTextField, gbcSM);
 
-//        --------input password----------
-        JLabel passwordLabel = new JLabel("Password");
-        passwordLabel.setFont(inputFont);
-        passwordLabel.setPreferredSize(new Dimension(90,40));
-        gbcSM.gridx = 0;
-        gbcSM.gridy = 6;
-        panelSM.add(passwordLabel, gbcSM);
-
-        passwordTextField = new JTextField();
-        passwordTextField.setFont(textFieldFont);
-        passwordTextField.setPreferredSize(new Dimension(200,40));
-        gbcSM.gridx = 1;
-        gbcSM.gridy = 6;
-        panelSM.add(passwordTextField, gbcSM);
-
         //        ------CBB gender-------
         String gender[] = {"","Male","Female"};
         genderCBB = new JComboBox<>(gender);
@@ -174,6 +160,8 @@ public class StudentManagementView extends JFrame {
         userLoginLabel.setFont(fontTop);
         userLoginLabel.setForeground(Color.blue);
         gbcSM.insets = new Insets(0,0,60,0);
+        gbcSM.fill = GridBagConstraints.HORIZONTAL;
+        gbcSM.gridwidth = 3;
         gbcSM.gridwidth = 5;
         gbcSM.gridx = 0;
         gbcSM.gridy = 0;
@@ -227,31 +215,38 @@ public class StudentManagementView extends JFrame {
 //        studentTable.addColumn("Major");
 //        studentTable.addColumn("Score");
 
+
         stTable = new JTable();
         stTable.setModel(new DefaultTableModel(
                 new Object[][]{
-                        {null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null}
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null}
                 },
-                new String[] {"Student ID", "Name","Age","Gender","Major","Score","Password"}
+                new String[] {"Student ID", "Name","Age","Gender","Major","Score"}
         ));
 //        stTable.setModel(studentTable);
         stTable.setFont(new Font("Arial",Font.PLAIN,13));
+        stTable.getTableHeader().setFont(new Font("Arial", Font.BOLD,13));
+        stTable.setGridColor(new Color(0xbcbcbc));
+        stTable.setRowHeight(25);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         stTable.getColumnModel().getColumn(0).setPreferredWidth(70);
         stTable.getColumnModel().getColumn(0).setMinWidth(70);
+        stTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
         stTable.getColumnModel().getColumn(1).setPreferredWidth(120);
         stTable.getColumnModel().getColumn(1).setMinWidth(120);
         stTable.getColumnModel().getColumn(2).setPreferredWidth(40);
         stTable.getColumnModel().getColumn(2).setMinWidth(40);
+        stTable.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
         stTable.getColumnModel().getColumn(3).setPreferredWidth(50);
         stTable.getColumnModel().getColumn(3).setMinWidth(50);
         stTable.getColumnModel().getColumn(4).setPreferredWidth(70);
         stTable.getColumnModel().getColumn(4).setMinWidth(70);
         stTable.getColumnModel().getColumn(5).setPreferredWidth(40);
         stTable.getColumnModel().getColumn(5).setMinWidth(40);
-        stTable.getColumnModel().getColumn(6).setPreferredWidth(80);
-        stTable.getColumnModel().getColumn(6).setMinWidth(80);
-
+        stTable.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        ((DefaultTableCellRenderer)stTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
         scrollPane = new JScrollPane();
         scrollPane.setPreferredSize(new Dimension(500,20));
         scrollPane.setViewportView(stTable);
@@ -269,6 +264,8 @@ public class StudentManagementView extends JFrame {
         this.add(panelSM, BorderLayout.CENTER);
         this.add(buttonPanel, BorderLayout.SOUTH);
         this.setVisible(true);
+
+
         showData(ConnJDBC.findAll());
     }
 
@@ -281,17 +278,16 @@ public class StudentManagementView extends JFrame {
         tableModel.setRowCount(0);
         listStudent.forEach((student) -> {
             String gender;
-            if(student.getGender()  == 0) gender = "Male";
+            if(student.getGender()  == 1) gender = "Male";
             else {gender = "Female";}
             tableModel.addRow(new Object[]{
                     student.getId(), student.getName(), student.getAge(),
-                    gender, student.getMajor(), student.getScore(),  student.getPassword()
+                    gender, student.getMajor(), student.getScore(),
             });
         });
     }
 
     public void refresh() {
-        passwordTextField.setText("");
         nameTextField.setText("");
         ageTextField.setText("");
         genderCBB.setSelectedIndex(-1);
@@ -301,15 +297,24 @@ public class StudentManagementView extends JFrame {
     }
 
     public void saveStudent() {
-        Student st = new Student();
-        st.setName(nameTextField.getText());
-        st.setAge(Integer.parseInt(ageTextField.getText()));
-        st.setGender(genderCBB.getSelectedIndex());
-        st.setMajor(majorTextField.getText());
-        st.setScore(Float.parseFloat(scoreTextField.getText()));
-        st.setPassword(passwordTextField.getText());
-        ConnJDBC.insert(st);
-        JOptionPane.showMessageDialog(null, "Save success! ");
+        try {
+            if (String.valueOf(nameTextField.getText()).equals("") || String.valueOf(ageTextField.getText()).equals("") || genderCBB.getSelectedIndex() == 0
+                || String.valueOf(majorTextField.getText()).equals("") || String.valueOf(scoreTextField.getText()).equals("")){
+                System.out.println("cecccc");
+                JOptionPane.showMessageDialog(this, "Please input student information");
+            } else {
+                Student st = new Student();
+                st.setName(nameTextField.getText());
+                st.setAge(Integer.parseInt(ageTextField.getText()));
+                st.setGender(genderCBB.getSelectedIndex());
+                st.setMajor(majorTextField.getText());
+                st.setScore(Float.parseFloat(scoreTextField.getText()));
+                ConnJDBC.insert(st);
+                JOptionPane.showMessageDialog(null, "Save success! ");
+            }
+        } catch (HeadlessException e) {
+            throw new RuntimeException(e);
+        }
         showData(ConnJDBC.findAll());
     }
 
@@ -334,7 +339,6 @@ public class StudentManagementView extends JFrame {
         st.setGender(genderCBB.getSelectedIndex());
         st.setMajor(majorTextField.getText());
         st.setScore(Float.parseFloat(scoreTextField.getText()));
-        st.setPassword(passwordTextField.getText());
         ConnJDBC.Update(st);
         JOptionPane.showMessageDialog(null, "Save success! ");
         showData(ConnJDBC.findAll());

@@ -6,19 +6,17 @@ public class Student {
     private int age, gender;
     private String major;
     private float score;
-    private String password;
 
     public Student() {
     }
 
-    public Student(int id, String name, int age, int gender, String major, float score, String password) {
+    public Student(int id, String name, int age, int gender, String major, float score) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.major = major;
         this.score = score;
-        this.password = password;
     }
 
     public int getId() {
@@ -67,12 +65,5 @@ public class Student {
 
     public void setScore(float score) {
         this.score = score;
-    }
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

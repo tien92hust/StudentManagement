@@ -33,8 +33,7 @@ public class ConnJDBC {
                                         rs.getInt("age"),
                                         rs.getInt("gender"),
                                         rs.getString("major"),
-                                        rs.getFloat("score"),
-                                        rs.getString("password"));
+                                        rs.getFloat("score"));
                 studentList.add(st);
             }
         } catch (Exception e) {
@@ -44,7 +43,7 @@ public class ConnJDBC {
     }
 
     public static void insert(Student st){
-        String query = "insert into student (name, age, gender, major, score, password) values (?, ?, ?, ?, ?, ?)";
+        String query = "insert into student (name, age, gender, major, score) values (?, ?, ?, ?, ?)";
         try {
             Connection connection = getConnection();
             PreparedStatement pstmt = connection.prepareStatement(query);
@@ -53,7 +52,6 @@ public class ConnJDBC {
             pstmt.setInt(3, st.getGender());
             pstmt.setString(4, st.getMajor());
             pstmt.setFloat(5, st.getScore());
-            pstmt.setString(6, st.getPassword());
             pstmt.execute();
         } catch (Exception e) {
 
@@ -72,7 +70,7 @@ public class ConnJDBC {
     }
 
     public static void Update(Student st){
-        String query = "Update student set name=?, age=?, gender=?, major=?, score=?, password=? where name='"+st.getName()+"'";
+        String query = "Update student set name=?, age=?, gender=?, major=?, score=? where name='"+st.getName()+"'";
         try {
             Connection connection = getConnection();
             PreparedStatement pstmt = connection.prepareStatement(query);
@@ -81,7 +79,6 @@ public class ConnJDBC {
             pstmt.setInt(3, st.getGender());
             pstmt.setString(4, st.getMajor());
             pstmt.setFloat(5, st.getScore());
-            pstmt.setString(6, st.getPassword());
             pstmt.executeUpdate();
         } catch (Exception e) {
 
@@ -101,8 +98,7 @@ public class ConnJDBC {
                         rs.getInt("age"),
                         rs.getInt("gender"),
                         rs.getString("major"),
-                        rs.getFloat("score"),
-                        rs.getString("password"));
+                        rs.getFloat("score"));
                 studentl.add(st);
             }
         } catch (Exception e) {
